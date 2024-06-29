@@ -8,10 +8,11 @@ app.get('/', (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
 
-// const fs = require('fs');
-
 // const path = require('path');
+// app.use(express.static(path.join(__dirname + 'public')));
 
+
+// const fs = require('fs');
 
 // const server = http.createServer((req, res) =>{
 //     const pathFile = path.join(__dirname, 'public', 'index.html');
