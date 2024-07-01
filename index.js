@@ -1,9 +1,9 @@
-// require('dotenv').config();
+require('dotenv').config();
 const exp = require('constants');
 const express = require("express");
 const app = express();
 
-const path = require('path');
+//const path = require('path');
 
 const cors = require('cors');
 app.use(cors());
@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
     res.send('deploy');
 })
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
 
 

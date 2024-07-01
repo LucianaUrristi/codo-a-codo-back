@@ -4,20 +4,20 @@ const index = (req, res) => {
     const sql = 'SELECT * FROM usuario';
     db.query(sql, (err, rows) => {
         if (err) {
-            return res.status(500).json({err: "Intente más tarde"});
+            console.error('Error al ejecutar la consulta:', err);
+            return res.status(500).json({err: "Intente más taaarde"});
         } 
         res.json(rows);
     });
 };
 
 const show = (req, res) =>{
-    const usuario = usuario.find((elemento) => elemento.id === req.params.id);
     const { id } = req.params;
 
     const sql = 'SELECT * FROM usuario WHERE id = ?';
     db.query(sql, [id], (err, rows) => {
         if (err) {
-            return res.status(500).json({err: "Intente más tarde"});
+            return res.status(500).json({err: "Intente más tardeee"});
         } 
 
         if(rows.length == 0){
