@@ -23,6 +23,7 @@ const show = (req, res) =>{
         LEFT JOIN personaje ON fanArt.personaje_id = personaje.id
         WHERE usuario.id = ?
     `;
+    
 
     db.query(sql, [id], (err, rows) => {
         if (err) {
