@@ -5,7 +5,7 @@ const index = (req, res) => {
     db.query(sql, (err, rows) => {
         if (err) {
             console.error('Error al ejecutar la consulta:', err);
-            return res.status(500).json({err: "Intente más taaarde"});
+            return res.status(500).json({err: "Intente más tarde."});
         } 
         res.json(rows);
     });
@@ -14,10 +14,19 @@ const index = (req, res) => {
 const show = (req, res) =>{
     const { id } = req.params;
 
-    const sql = 'SELECT * FROM usuario WHERE id = ?';
+    //const sql = 'SELECT * FROM usuario WHERE id = ?';
+
+    const sql = `
+        SELECT usuario.*, fanArt.personaje_id, fanArt.fecha, fanArt.imagen
+        FROM usuario
+        LEFT JOIN fanArt ON usuario.id = fanArt.usuario_id
+        LEFT JOIN personaje ON fanArt.personaje_id = personaje.id
+        WHERE usuario.id = ?
+    `;
+
     db.query(sql, [id], (err, rows) => {
         if (err) {
-            return res.status(500).json({err: "Intente más tardeee"});
+            return res.status(500).json({err: "Intente más tarde."});
         } 
 
         if(rows.length == 0){
@@ -36,7 +45,21 @@ const usuarios = (req, res) => {
         }
 
         const user = {...res.body, id: result.insertId};
-        res.json(user);
+        //res.json(user);
+        if (fanArt) { 
+            // FALTA AGREGAR QUE SEGUN EL NOMBRE DE LA IMAGEN ASIGNE EL ID DE PJ.NOMBRE DE LA TABLA PERSONAJE
+            const { personaje_id, fecha, imagen } = req.body;
+            const sqlFanArt = 'INSERT INTO fan_art (usuario_id, personaje_id, fecha, imagen) VALUES (?, ?, ?, ?)';
+            db.query(sqlFanArt, [result.insertId, personaje_id, fecha, imagen], (err, resultFanArt) => {
+                if (err) {
+                    console.error('Error al insertar fanArt:', err);
+                    return res.status(500).json({ err: "Error al insertar fanArt" });
+                }
+                res.json(user);
+            });
+        } else {
+            res.json(user);
+        }
     });
 };
 
