@@ -39,6 +39,7 @@ const usuarioController = require('../controllers/usuario.controller');
 router.get('/', usuarioController.index);
 
 router.get('/:id', usuarioController.show);
+router.post('/', usuarioController.usuarios);
 
 // router.post('/', (req, res) => {
 //     const usuario = {

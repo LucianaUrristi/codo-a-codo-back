@@ -12,12 +12,12 @@ const index = (req, res) => {
 
 const show = (req, res) =>{
     const usuario = usuario.find((elemento) => elemento.id === req.params.id);
-    const {id} = req.params;
+    const { id } = req.params;
 
     const sql = 'SELECT * FROM usuario WHERE id = ?';
     db.query(sql, [id], (err, rows) => {
         if (err) {
-           return res.status(500).json({err: "Intente más tarde"});
+            return res.status(500).json({err: "Intente más tarde"});
         } 
 
         if(rows.length == 0){
@@ -25,10 +25,23 @@ const show = (req, res) =>{
         }
         res.json(rows[0]);
     });
-
 }
+
+const usuarios = (req, res) => {
+    const { nombre, apellido, email, turno, edad, fanArt } = req.body;
+    const sql = 'INSERT INTO usuario (nombre, apellido, email, turno, edad, fanArt) VALUES (?, ?, ?, ?, ?, ?)';
+    db.query(sql, [nombre, apellido, email, turno, edad, fanArt], (err, result) => {
+        if(err){
+            return res.status(500).json({err: "Intente más tarde."});
+        }
+
+        const user = {...res.body, id: result.insertId};
+        res.json(user);
+    });
+};
 
 module.exports = {
     index,
     show, 
+    usuarios,
 };
