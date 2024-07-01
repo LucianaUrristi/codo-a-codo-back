@@ -50,7 +50,7 @@ const update = (req, res) => {
         }
 
         if(result.affectedRows == 0) {
-            return  res.status(404).json({err: "Ninguna fila afectada. Uruario inexistente."});
+            return  res.status(404).json({err: "Ninguna fila afectada. Usuario inexistente."});
         }
 
         const user = {...res.body, ...req.params};
@@ -58,9 +58,27 @@ const update = (req, res) => {
     });
 }
 
+const destroy = (req, res) => {
+    const { id } = req.params;
+    const sql = 'DELETE FROM usuario WHERE id =?';
+    db.query(sql, [id], (err, result) => {
+        if(err){
+            return res.status(500).json({err: "Intente más tarde."});
+        };
+
+        if(result.affectedRows == 0) {
+            return  res.status(404).json({err: "Ninguna fila afectada. Usuario inexistente."});
+        }
+
+        res.json({mensaje: `Usuario ${id} eliminado.`});
+
+    });
+};
+
 module.exports = {
     index,
     show, 
     usuarios,
     update,
+    destroy,
 };
