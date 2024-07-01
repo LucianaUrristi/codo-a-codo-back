@@ -40,8 +40,27 @@ const usuarios = (req, res) => {
     });
 };
 
+const update = (req, res) => {
+    const { id } = req.params;
+    const { nombre, apellido, email, turno, edad, fanArt } = req.body;
+    const sql = 'UPDATE usuario SET nombre =?, apellido =?, email =?, turno =?, edad =?, fanArt =? WHERE id =?';
+    db.query(sql, [nombre, apellido, email, turno, edad, fanArt, id], (err, result) => {
+        if(err){
+            return res.status(500).json({err: "Intente más tardee."});
+        }
+
+        if(result.affectedRows == 0) {
+            return  res.status(404).json({err: "Ninguna fila afectada. Uruario inexistente."});
+        }
+
+        const user = {...res.body, ...req.params};
+        res.json(user);
+    });
+}
+
 module.exports = {
     index,
     show, 
     usuarios,
+    update,
 };

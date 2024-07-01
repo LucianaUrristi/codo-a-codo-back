@@ -37,22 +37,9 @@ const usuarioController = require('../controllers/usuario.controller');
 // ]
 
 router.get('/', usuarioController.index);
-
 router.get('/:id', usuarioController.show);
 router.post('/', usuarioController.usuarios);
+router.put('/:id', usuarioController.update);
 
-// router.post('/', (req, res) => {
-//     const usuario = {
-//         id: usuario.length + 1,
-//         nombre: req.body.nombre,
-//         apellido: req.body.apellido,
-//         email: req.body.email,
-//         turno: req.body.turno,
-//         edad: req.body.edad,
-//         fanArt: req.body.fanArt
-//     }
-//     usuario.push(usuario);
-//     res.json(usuario);
-// }
 
 module.exports = router;
