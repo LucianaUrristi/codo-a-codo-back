@@ -49,9 +49,9 @@ const usuarios = (req, res) => {
         //res.json(user);
         if (fanArt) { 
             // FALTA AGREGAR QUE SEGUN EL NOMBRE DE LA IMAGEN ASIGNE EL ID DE PJ.NOMBRE DE LA TABLA PERSONAJE
-            const { personaje_id, fecha, imagen } = req.body;
+            const { personaje_id, fecha } = req.body;
             const sqlFanArt = 'INSERT INTO fan_art (usuario_id, personaje_id, fecha, imagen) VALUES (?, ?, ?, ?)';
-            db.query(sqlFanArt, [result.insertId, personaje_id, fecha, imagen], (err, resultFanArt) => {
+            db.query(sqlFanArt, [result.insertId, personaje_id, fecha, req.file.filename], (err, resultFanArt) => {
                 if (err) {
                     console.error('Error al insertar fanArt:', err);
                     return res.status(500).json({ err: "Error al insertar fanArt" });
