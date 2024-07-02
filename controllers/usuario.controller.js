@@ -17,13 +17,12 @@ const show = (req, res) =>{
     //const sql = 'SELECT * FROM usuario WHERE id = ?';
 
     const sql = `
-        SELECT usuario.*, fanArt.personaje_id, fanArt.fecha, fanArt.imagen
+        SELECT usuario.*, fan_art.personaje_id, fan_art.fecha, fan_art.imagen
         FROM usuario
-        LEFT JOIN fanArt ON usuario.id = fanArt.usuario_id
-        LEFT JOIN personaje ON fanArt.personaje_id = personaje.id
+        LEFT JOIN fan_art ON usuario.id = fan_art.usuario_id
+        LEFT JOIN personaje ON fan_art.personaje_id = personaje.id
         WHERE usuario.id = ?
     `;
-    
 
     db.query(sql, [id], (err, rows) => {
         if (err) {
@@ -42,6 +41,7 @@ const usuarios = (req, res) => {
     const sql = 'INSERT INTO usuario (nombre, apellido, email, turno, edad, fanArt) VALUES (?, ?, ?, ?, ?, ?)';
     db.query(sql, [nombre, apellido, email, turno, edad, fanArt], (err, result) => {
         if(err){
+            console.log(err)
             return res.status(500).json({err: "Intente más tarde."});
         }
 
@@ -84,9 +84,10 @@ const update = (req, res) => {
 
 const destroy = (req, res) => {
     const { id } = req.params;
-    const sql = 'DELETE FROM usuario WHERE id =?';
+    const sql = 'DELETE FROM usuario WHERE id = ?';
     db.query(sql, [id], (err, result) => {
         if(err){
+            console.log(err)
             return res.status(500).json({err: "Intente más tarde."});
         };
 
