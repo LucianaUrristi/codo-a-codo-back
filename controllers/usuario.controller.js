@@ -16,15 +16,21 @@ const show = (req, res) =>{
 
     //const sql = 'SELECT * FROM usuario WHERE id = ?';
 
-    const sql = `
-        SELECT usuario.*, fanArt.personaje_id, fanArt.fecha, fanArt.imagen
+  // const sql = `
+  //       SELECT usuario.*, fanArt.personaje_id, fanArt.fecha, fanArt.imagen
+  //       FROM usuario
+  //       LEFT JOIN fanArt ON usuario.id = fanArt.usuario_id
+  //       LEFT JOIN personaje ON fanArt.personaje_id = personaje.id
+  //       WHERE usuario.id = ?
+  //   `
+  const sql = `
+        SELECT usuario.*, fan_art.personaje_id, fan_art.fecha, fan_art.imagen
         FROM usuario
-        LEFT JOIN fanArt ON usuario.id = fanArt.usuario_id
-        LEFT JOIN personaje ON fanArt.personaje_id = personaje.id
+        LEFT JOIN fan_art ON usuario.id = fan_art.usuario_id
+        LEFT JOIN personaje ON fan_art.personaje_id = personaje.id
         WHERE usuario.id = ?
     `;
-    
-
+  
     db.query(sql, [id], (err, rows) => {
         if (err) {
             return res.status(500).json({err: "Intente más tarde."});
@@ -38,6 +44,7 @@ const show = (req, res) =>{
 }
 
 const usuarios = (req, res) => {
+  console.log(req.file); //para ver caracteristicas de las imagenes que se suben
     const { nombre, apellido, email, turno, edad, fanArt } = req.body;
     const sql = 'INSERT INTO usuario (nombre, apellido, email, turno, edad, fanArt) VALUES (?, ?, ?, ?, ?, ?)';
     db.query(sql, [nombre, apellido, email, turno, edad, fanArt], (err, result) => {
@@ -84,7 +91,7 @@ const update = (req, res) => {
 
 const destroy = (req, res) => {
     const { id } = req.params;
-    const sql = 'DELETE FROM usuario WHERE id =?';
+    const sql = 'DELETE FROM usuario WHERE id = ?';
     db.query(sql, [id], (err, result) => {
         if(err){
             return res.status(500).json({err: "Intente más tarde."});
@@ -104,5 +111,5 @@ module.exports = {
     show, 
     usuarios,
     update,
-    destroy,
+    destroy
 };
