@@ -48,7 +48,7 @@ const usuarios = (req, res) => {
         const user = { ...res.body, id: result.insertId };
         //res.json(user);
         if (fanArt) {
-            // FALTA AGREGAR QUE SEGUN EL NOMBRE DE LA IMAGEN ASIGNE EL ID DE PJ.NOMBRE DE LA TABLA PERSONAJE
+            // FALTA AGREGAR QUE SEGUN EL NOMBRE DE LA IMAGEN ASIGNE EL ID DE  DE LA TABLA PERSONAJE
             const { personaje_id } = req.body;
 
             let currentDate = new Date();
