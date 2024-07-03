@@ -14,10 +14,19 @@
     Api deploy > https://codo-a-codo-back.onrender.com
 
 
-  
-</p>
+<h2>
+<p>Endpoints:</p>
+    <ul> 
+<li>/usuario (post)</li>
+<li>/usuario (get)</li>
+<li>/usuario/id (get)</li>
+<li>/usuario (put)</li>
+<li>/usuario (delete, token needed)</li>
+<li>/login (post)</li>
+<li>/fanarts (get)</li>
 
-***
+</h2>
+<br>
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/103077968/199503007-b4e09ae0-258e-43b2-a758-d2408f5c05b1.gif" width="400" height="300" style="display:inline-block; margin-right: 20px;">
