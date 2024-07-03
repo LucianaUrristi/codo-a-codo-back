@@ -19,5 +19,7 @@
 
 ***
 
-![press-any-key-any-key](https://user-images.githubusercontent.com/103077968/199503007-b4e09ae0-258e-43b2-a758-d2408f5c05b1.gif)
-
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/103077968/199503007-b4e09ae0-258e-43b2-a758-d2408f5c05b1.gif" width="400" height="300" style="display:inline-block; margin-right: 20px;">
+  <img src="https://www.capsnlock.com/cdn/shop/articles/TheSimpsonskKeyboardPecker_c270039b-f8c3-44e5-8afe-3ff8fcbe392e.gif?v=1673306378" width="400" height="300" style="display:inline-block;">
+</p>
