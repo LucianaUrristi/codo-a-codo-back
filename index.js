@@ -1,6 +1,7 @@
 require('dotenv').config();
 const exp = require('constants');
 // const http = require('http');
+const path = require('path');
 const express = require("express");
 const app = express();
 
@@ -11,6 +12,8 @@ app.use(cors());
 
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/fanarts', require('./routes/fan_art.router'));
 app.use('/usuario', require('./routes/usuario.router'));
