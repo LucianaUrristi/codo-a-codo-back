@@ -13,8 +13,11 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 app.use('/fanarts', require('./routes/fan_art.router'));
 app.use('/usuario', require('./routes/usuario.router'));
+app.use('/login', require('./routes/login.router'));
 app.get('/', (req, res) => {
     res.send('deploy');
 });

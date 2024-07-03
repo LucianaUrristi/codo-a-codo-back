@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middlewares/auth')
 
 const multer = require("multer");
 const path = require("path");
@@ -38,6 +39,6 @@ router.get('/', usuarioController.index);
 router.get('/:id', usuarioController.show);
 router.post('/', upload.single("imagen"), usuarioController.usuarios);
 router.put('/:id', usuarioController.update);
-router.delete('/:id', usuarioController.destroy);
+router.delete('/:id', auth ,usuarioController.destroy);
 
 module.exports = router;
