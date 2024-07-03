@@ -14,8 +14,6 @@ const index = (req, res) => {
 const show = (req, res) => {
     const { id } = req.params;
 
-    //const sql = 'SELECT * FROM usuario WHERE id = ?';
-
     const sql = `
         SELECT usuario.*, fan_art.personaje_id, fan_art.fecha, fan_art.imagen
         FROM usuario
@@ -48,7 +46,7 @@ const usuarios = (req, res) => {
         const user = { ...res.body, id: result.insertId };
         //res.json(user);
         if (fanArt) {
-            // FALTA AGREGAR QUE SEGUN EL NOMBRE DE LA IMAGEN ASIGNE EL ID DE  DE LA TABLA PERSONAJE
+            
             const { personaje_id } = req.body;
 
             let currentDate = new Date();
@@ -104,7 +102,7 @@ const destroy = (req, res) => {
             return res.status(404).json({ err: "Ninguna fila afectada. Usuario inexistente." });
         }
 
-        res.json({ mensaje: `Usuario ${id} eliminado.` });
+        res.json({ mensaje: `Usuario ${ id } eliminado.` });
 
     });
 };

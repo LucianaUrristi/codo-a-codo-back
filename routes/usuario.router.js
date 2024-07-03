@@ -34,8 +34,6 @@ const upload = multer({
 const usuarioController = require('../controllers/usuario.controller');
 
 
-//el prefijo /usuario
-
 router.get('/', usuarioController.index);
 router.get('/:id', usuarioController.show);
 router.post('/', upload.single("imagen"), usuarioController.usuarios);
