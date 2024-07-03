@@ -2,7 +2,7 @@ const db = require('../db/db');
 
 const index = (req, res) => {
     const sql = `
-                SELECT fan_art.id AS fan_art_id, personaje.id AS personaje_id, personaje.pjnombre AS personaje, fan_art.imagen, usuario.nombre 
+                SELECT usuario.id AS usuario_id, personaje.id AS personaje_id, personaje.pjnombre AS personaje, fan_art.imagen, usuario.nombre 
                 FROM fan_art 
                 JOIN personaje ON fan_art.personaje_id = personaje.id 
                 JOIN usuario ON fan_art.usuario_id = usuario.id;
